@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" name="spring-boot-log-example">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} %highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=green bold, TRACE=blue} %style{}{magenta} [%M] %style{%40C}{cyan} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%xEx}
+        </Property>
+        <Property name="FILE_LOG_PATTERN">${FILE_LOG_PATTERN:-%m%n}</Property>
+        <Property name="APP_LOG_FILE_PATH">${APP_LOG_FILE_PATH:-./logs/}</Property>
+        <Property name="APP_LOG_NAME">${APP_LOG_NAME:-spring-boot-kafka-log-example.log}</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false" pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <File name="LogToFile" fileName="${APP_LOG_FILE_PATH}/${APP_LOG_NAME}">
+            <PatternLayout pattern="${FILE_LOG_PATTERN}"/>
+        </File>
+
+        <Async name="Async">
+            <AppenderRef ref="LogToFile"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+        <Logger name="org.apache.kafka" level="WARN" />
+        <logger name="org.springframework.data.convert.CustomConversions" level="ERROR"/>
+        <logger name="org.springframework.data.elasticsearch" level="ERROR"/>
+        <Logger name="org.apache" level="OFF" />
+        <logger name="org.mongodb" level="WARN"/>
+        <logger name="com.nrkt.springbootkafkalog.helper.RequestLogger" level="INFO">
+            <AppenderRef ref="LogToFile"/>
+        </logger>
+    </Loggers>
+</Configuration>

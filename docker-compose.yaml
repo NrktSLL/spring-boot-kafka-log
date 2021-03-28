@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  spring-boot-kafka-log:
+    image: nrkt/spring-boot-kafka-log-ex:0.0.1
+    container_name: spring-boot-kafka-log-example
+    restart: on-failure
+    environment:
+      TZ: Europe/Istanbul
+      KAFKA_BOOTSTRAP_SERVER: kafka:9092
+      KAFKA_TOPICS: log
+      KAFKA_CONSUMER_GROUP_ID: nrkt
+      LOGGING_FILE_NAME: spring-boot-kafka-log-example.log
+      APP_LOG_FILE_PATH: ./logs/
+      ELASTICSEARCH_URL: elasticsearch:9200
+    ports:
+      - 8080:8080
+
+  zookeeper:
+    image: bitnami/zookeeper:3
+    container_name: zookeeper
+    restart: on-failure
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+    volumes:
+      - zookeeper_data
+    ports:
+      - 2181:2181
+
+  kafka:
+    image: bitnami/kafka:2
+    container_name: kafka
+    restart: on-failure
+    environment:
+      KAFKA_CFG_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CFG_LISTENERS: PLAINTEXT://:9092
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+    volumes:
+      - kafka_data
+    ports:
+      - 9092:9092
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop:3.27.0
+    container_name: kafdrop
+    restart: on-failure
+    environment:
+      KAFKA_BROKERCONNECT: kafka:9092
+      JVM_OPTS: -Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify
+    ports:
+      - 9000:9000
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
+    container_name: elasticsearch
+    restart: on-failure
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    environment:
+      TZ: Europe/Istanbul
+      discovery.type: single-node
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    volumes:
+      - ./data/elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.12.0
+    container_name: kibana
+    restart: on-failure
+    environment:
+      TZ: Europe/Istanbul
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    ports:
+      - 5601:5601

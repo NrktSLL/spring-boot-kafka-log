@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "kafka.topic",
+      "type": "java.lang.String",
+      "description": "Kafka topic name"
+    },
+    {
+      "name": "log.folder.path",
+      "type": "java.lang.String",
+      "description": "Logging folder location"
+    },
+    {
+      "name": "log.file.name",
+      "type": "java.lang.String",
+      "description": "log file name"
+    }
+  ]
+}
