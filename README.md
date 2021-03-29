@@ -43,24 +43,30 @@ docker-compose up -d
 | DELETE | ✗ | - | NO CONTENT(204) | http://localhost:8080/api/v1/demo
 
 ## Swagger
-You can be accessed at this address and relevant methods can be tested;
+You can be accessed at this address and relevant methods can be tested
 > **Access : http://localhost:8080/api/documentation/**
 
 <img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/swagger.png" alt="# Spring Boot Kafka Example " width="70%" height="70%"/> 
 
 
 ## Kafdrop
-You can see the messages in topic on kafka from this address;
+You can see the messages in topic on kafka from this address
 > **Access : http://localhost:9000/**
 
 <img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/kafdrop.png" alt="# Spring Boot Kafka Example " width="70%" height="70%"/> 
 
 
 ## Kibana
-For dashboard and log details;
+For dashboard and log details
 > **Access : http://localhost:5601/**
 
 <img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/kibana-dashboard.png" alt="# Spring Boot Kafka Example " width="70%" height="70%"/> 
+
+You can import the **export.ndjson** file as follows:
+
+<img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/kibana-import.png" alt="# Spring Boot Kafka Example " width="70%" height="70%"/> 
+
+After that, charts viewable from **Analytics/Dashboard** menu
 
 <br>
 
