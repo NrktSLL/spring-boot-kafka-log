@@ -35,12 +35,12 @@ docker-compose up -d
 
 ## HTTP Methods Detail
 
-| Method |Body| Body Optional | Response | Address | Produce | 
-| --- | --- | --- | --- |  --- | --- |
-| POST | ✓ | ✓ | OK(200) | http://localhost:8080/api/v1/demo | application/json
-| GET | ✗ | - | OK(200) | http://localhost:8080/api/v1/demo | application/json
-| PUT | ✓ | ✓ | OK(200) | http://localhost:8080/api/v1/demo | application/json
-| DELETE | ✗ | - | NO CONTENT(204) | http://localhost:8080/api/v1/demo | application/json
+| Method |Body| Body Optional | Response | Address
+| --- | --- | --- | --- |  --- |
+| POST | ✓ | ✓ | OK(200) | http://localhost:8080/api/v1/demo
+| GET | ✗ | - | OK(200) | http://localhost:8080/api/v1/demo 
+| PUT | ✓ | ✓ | OK(200) | http://localhost:8080/api/v1/demo 
+| DELETE | ✗ | - | NO CONTENT(204) | http://localhost:8080/api/v1/demo
 
 ## Swagger
 You can be accessed at this address and relevant methods can be tested;
@@ -58,7 +58,7 @@ You can see the messages in topic on kafka from this address;
 
 ## Kibana
 For dashboard and log details;
-> **Access : http://localhost:5601/goto/8ff9ced2a257660fc9a5191ddc486f85**
+> **Access : http://localhost:5601/**
 
 <img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/kibana-dashboard.png" alt="# Spring Boot Kafka Example " width="70%" height="70%"/> 
 
