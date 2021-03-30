@@ -60,13 +60,16 @@ For Http Method metrics on Grafana
 
 <img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/grafana.png" alt="# Spring Boot Kafka Example " width="70%" height="70%"/> 
 
+:warning: If dashboard is not loading you can import the in project files **grafana/provisioning/dashboards/Http Method Duration Time.json** file 
+
+
 ## Kibana
 For dashboard and log details on Kibana
 > **Access : http://localhost:5601/**
 
 <img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/kibana-dashboard.png" alt="# Spring Boot Kafka Log Example " width="70%" height="70%"/> 
 
-You can import the **export.ndjson** file as follows:
+:information_source: You can import the **export.ndjson** file as follows:
 
 <img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/kibana-import.png" alt="# Spring Boot Kafka Log Example " width="70%" height="70%"/> 
 
