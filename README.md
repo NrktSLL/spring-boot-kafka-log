@@ -1,5 +1,4 @@
 # Spring Boot Kafka Log Example
->**This project is an example application that records the logs written to the log file to Elasticsearch via Kafka.**
 
 <p align="center">
 <img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/spring-boot-kafka-log.png" alt="Spring Boot Kafka Log Example" width="40%" height="40%"/> 
