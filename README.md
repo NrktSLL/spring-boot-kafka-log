@@ -60,7 +60,13 @@ For Http Method metrics on Grafana
 
 <img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/grafana.png" alt="# Spring Boot Kafka Example " width="70%" height="70%"/> 
 
-:warning: If dashboard is not loading you can import the in project files **grafana/provisioning/dashboards/Http Method Duration Time.json** file 
+:warning: If dashboard is not loading you can sign-in Grafana and import the in project files **grafana/provisioning/dashboards/Http_Method_Duration.json** file
+
+Grafana Login info:
+```
+admin
+root
+```
 
 
 ## Kibana
