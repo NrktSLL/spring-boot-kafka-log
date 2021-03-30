@@ -1,7 +1,7 @@
 # Spring Boot Kafka Log Example
 
 <p align="center">
-<img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/spring-boot-kafka-log.png" alt="Spring Boot Kafka Log Example" width="40%" height="40%"/> 
+<img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/spring-boot-kafka-log.png" alt="Spring Boot Kafka Log Example" width="80%" height="80%"/> 
 </p>
 
 ## How is It Work ?
