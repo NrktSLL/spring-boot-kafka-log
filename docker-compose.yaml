@@ -78,3 +78,16 @@ services:
       ELASTICSEARCH_URL: http://elasticsearch:9200
     ports:
       - 5601:5601
+
+  grafana:
+    image: grafana/grafana:7.5.1
+    container_name: grafana
+    restart: on-failure
+    env_file:
+      - grafana-conifg.env
+    volumes:
+      - ./data/grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+    ports:
+      - 3000:3000
