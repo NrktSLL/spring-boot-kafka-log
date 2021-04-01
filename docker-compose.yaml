@@ -80,14 +80,14 @@ services:
       - 5601:5601
 
   grafana:
-    image: grafana/grafana:7.5.1
+    image: grafana/grafana:7.5.2
     container_name: grafana
     env_file:
-      - grafana-conifg.env
+      - grafana-config.env
     volumes:
-      - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
-      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - grafana_data:/var/lib/grafana:Z
+      - ./grafana/provisioning/datasources/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml:Z
+      - ./grafana/provisioning/dashboards/:/etc/grafana/provisioning/dashboards/:Z
     ports:
       - 3000:3000
 

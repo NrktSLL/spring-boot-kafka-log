@@ -11,6 +11,12 @@
   ],
   "__requires": [
     {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
       "type": "datasource",
       "id": "elasticsearch",
       "name": "Elasticsearch",
@@ -21,12 +27,6 @@
       "id": "grafana",
       "name": "Grafana",
       "version": "7.5.1"
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
     },
     {
       "type": "panel",
@@ -56,7 +56,6 @@
   "panels": [
     {
       "datasource": "elasticsearch-v7",
-      "description": "This dashboard shows how long incoming requests are completed.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -65,22 +64,25 @@
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
-            "barAlignment": -1,
+            "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 8,
+            "fillOpacity": 30,
             "gradientMode": "none",
             "hideFrom": {
               "graph": false,
               "legend": false,
               "tooltip": false
             },
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 8,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
+            "showPoints": "always",
             "spanNulls": true
           },
           "mappings": [],
@@ -96,13 +98,14 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "short"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 0
       },
@@ -121,22 +124,11 @@
       "pluginVersion": "7.5.1",
       "targets": [
         {
-          "alias": "",
+          "alias": "GET",
           "bucketAggs": [
             {
-              "field": "methodType.keyword",
-              "id": "2",
-              "settings": {
-                "min_doc_count": "0",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
-              },
-              "type": "terms"
-            },
-            {
               "field": "currentTime",
-              "id": "1",
+              "id": "3",
               "settings": {
                 "interval": "auto",
                 "min_doc_count": "0",
@@ -149,18 +141,98 @@
             {
               "field": "duration",
               "id": "1",
-              "type": "cardinality"
+              "type": "avg"
             }
           ],
-          "query": "",
+          "query": "method=GET",
+          "queryType": "randomWalk",
+          "refId": "GET",
+          "timeField": "currentTime"
+        },
+        {
+          "alias": "POST",
+          "bucketAggs": [
+            {
+              "field": "currentTime",
+              "id": "3",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "0",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "field": "duration",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "method=POST",
+          "queryType": "randomWalk",
+          "refId": "POST",
+          "timeField": "currentTime"
+        },
+        {
+          "alias": "PUT",
+          "bucketAggs": [
+            {
+              "field": "currentTime",
+              "id": "3",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "0",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "field": "duration",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "method=PUT",
+          "queryType": "randomWalk",
+          "refId": "PUT",
+          "timeField": "currentTime"
+        },
+        {
+          "alias": "DELETE",
+          "bucketAggs": [
+            {
+              "field": "currentTime",
+              "id": "3",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "0",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "field": "duration",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "method=DELETE",
+          "queryType": "randomWalk",
           "refId": "A",
           "timeField": "currentTime"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Duration Http Methods",
-      "transformations": [],
+      "title": "HTTP Method Duration Time",
+      "transparent": true,
       "type": "timeseries"
     },
     {
@@ -168,11 +240,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": null,
-            "filterable": false
+            "mode": "palette-classic"
           },
           "mappings": [],
           "thresholds": {
@@ -187,85 +255,129 @@
                 "value": 80
               }
             ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Time"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 228
-              }
-            ]
           },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "methodType.keyword"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 216
-              }
-            ]
-          }
-        ]
+          "unit": "short"
+        },
+        "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 9
       },
-      "id": 4,
+      "id": 5,
       "options": {
-        "frameIndex": 1,
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "methodType.keyword"
-          }
-        ]
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
       },
       "pluginVersion": "7.5.1",
       "targets": [
         {
-          "alias": "",
+          "alias": "GET",
           "bucketAggs": [
             {
-              "field": "methodType.keyword",
-              "id": "1",
+              "field": "currentTime",
+              "id": "2",
               "settings": {
-                "min_doc_count": "0",
-                "order": "desc",
-                "orderBy": "_term",
-                "size": "0"
+                "interval": "auto"
               },
-              "type": "terms"
+              "type": "date_histogram"
             }
           ],
           "metrics": [
             {
-              "field": "duration",
-              "hide": true,
               "id": "1",
-              "type": "cardinality"
+              "type": "count"
             }
           ],
-          "query": "",
+          "query": "method=GET",
           "queryType": "randomWalk",
-          "refId": "A",
+          "refId": "GET",
+          "timeField": "currentTime"
+        },
+        {
+          "alias": "POST",
+          "bucketAggs": [
+            {
+              "field": "currentTime",
+              "id": "2",
+              "settings": {
+                "interval": "auto"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "method=POST",
+          "refId": "POST",
+          "timeField": "currentTime"
+        },
+        {
+          "alias": "PUT",
+          "bucketAggs": [
+            {
+              "field": "currentTime",
+              "id": "2",
+              "settings": {
+                "interval": "auto"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "method=PUT",
+          "refId": "PUT",
+          "timeField": "currentTime"
+        },
+        {
+          "alias": "DELETE",
+          "bucketAggs": [
+            {
+              "id": "2",
+              "settings": {
+                "interval": "auto"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "method=DELETE",
+          "refId": "DELETE",
           "timeField": "currentTime"
         }
       ],
-      "title": "Http Method Request Count",
-      "type": "table"
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Methods Count",
+      "type": "bargauge"
     }
   ],
   "refresh": "5s",
@@ -281,7 +393,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Http Method Duration Time",
-  "uid": "EShZoM_Mz",
+  "title": "Http Method Duration",
+  "uid": "DxDdROlMz",
   "version": 1
 }

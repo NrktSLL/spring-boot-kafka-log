@@ -14,9 +14,9 @@ import java.io.Serializable;
 @Builder
 public class Person implements Serializable {
     @JsonProperty("name")
-    @Schema(description = "Your Name", example = "Nurkut")
+    @Schema(description = "Name", example = "Foo")
     String name;
     @JsonProperty("surname")
-    @Schema(description = "Your Surname", example = "Sll")
+    @Schema(description = "Surname", example = "Bar")
     String surname;
 }

@@ -25,9 +25,9 @@ public class ExampleController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public Person post(@RequestBody(required = false) Optional<Person> person, HttpServletRequest httpRequest) {
+    public String post(@RequestBody(required = false) Optional<Person> person, HttpServletRequest httpRequest) {
         RequestLogger.info(httpRequest, startTime);
-        return person.orElse(Person.builder().build());
+        return person.isEmpty() ? "You have successfully submitted the " + httpRequest.getMethod() : person.get().toString();
     }
 
     @PutMapping
