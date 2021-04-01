@@ -1,13 +1,13 @@
 # Spring Boot Kafka Log Example
 
 <p align="center">
-<img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/spring-boot-kafka-log.png" alt="Spring Boot Kafka Log Example" width="80%" height="80%"/> 
+<img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/spring-boot-kafka-log.png" alt="Spring Boot Kafka Log Example" width="60%" height="60%"/> 
 </p>
 
 ## How is It Work ?
 
 <p align="center">
-<img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/spring-boot-kafka-log-example-how.png" alt="Spring Boot Kafka Log Example" width="60%" height="60%"/> 
+<img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/spring-boot-kafka-log-example-how.png" alt="Spring Boot Kafka Log Example" width="50%" height="50%"/> 
 </p>
 
 ## Prerequisites
