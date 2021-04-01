@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/v1/demo",produces = "application/json")
+@RequestMapping(value = "/v1/demo")
 @Tag(name = "helloworld", description = "Hello World Service")
 public class ExampleController {
 
@@ -20,21 +20,21 @@ public class ExampleController {
     @ResponseStatus(HttpStatus.OK)
     public String get(HttpServletRequest httpRequest) {
         RequestLogger.info(httpRequest, startTime);
-        return "Hello ";
+        return "You have successfully submitted the " + httpRequest.getMethod();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public Optional<Person> post(@RequestBody(required = false) Optional<Person> person, HttpServletRequest httpRequest) {
+    public Person post(@RequestBody(required = false) Optional<Person> person, HttpServletRequest httpRequest) {
         RequestLogger.info(httpRequest, startTime);
-        return person;
+        return person.orElse(Person.builder().build());
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public String put(@RequestBody(required = false) Optional<String> name, HttpServletRequest httpRequest) {
         RequestLogger.info(httpRequest, startTime);
-        return "Hello " + name;
+        return name.orElse("You have successfully submitted the " + httpRequest.getMethod());
     }
 
     @DeleteMapping

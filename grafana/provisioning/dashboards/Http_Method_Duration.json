@@ -24,6 +24,12 @@
     },
     {
       "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
       "id": "timeseries",
       "name": "Time series",
       "version": ""
@@ -69,7 +75,7 @@
               "tooltip": false
             },
             "lineInterpolation": "linear",
-            "lineWidth": 7,
+            "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -156,6 +162,110 @@
       "title": "Duration Http Methods",
       "transformations": [],
       "type": "timeseries"
+    },
+    {
+      "datasource": "elasticsearch-v7",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 228
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "methodType.keyword"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 216
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "frameIndex": 1,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "methodType.keyword"
+          }
+        ]
+      },
+      "pluginVersion": "7.5.1",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "methodType.keyword",
+              "id": "1",
+              "settings": {
+                "min_doc_count": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "duration",
+              "hide": true,
+              "id": "1",
+              "type": "cardinality"
+            }
+          ],
+          "query": "",
+          "queryType": "randomWalk",
+          "refId": "A",
+          "timeField": "currentTime"
+        }
+      ],
+      "title": "Http Method Request Count",
+      "type": "table"
     }
   ],
   "refresh": "5s",
@@ -173,5 +283,5 @@
   "timezone": "",
   "title": "Http Method Duration Time",
   "uid": "EShZoM_Mz",
-  "version": 3
+  "version": 1
 }
