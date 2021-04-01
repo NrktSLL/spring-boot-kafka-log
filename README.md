@@ -7,7 +7,7 @@
 ## How is It Work ?
 
 <p align="center">
-<img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/spring-boot-kafka-log-example-how.png" alt="Spring Boot Kafka Log Example" width="40%" height="40%"/> 
+<img src="https://github.com/NrktSLL/spring-boot-kafka-log/blob/master/images/spring-boot-kafka-log-example-how.png" alt="Spring Boot Kafka Log Example" width="60%" height="60%"/> 
 </p>
 
 ## Prerequisites
